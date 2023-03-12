@@ -17,7 +17,7 @@ def extract_layouts(pdf_path):
 
         # Get page text and create blocks
         blocks = []
-        for block in page.getText("dict")["blocks"]:
+        for block in page.get_text("dict")["blocks"]:
             bbox = block["bbox"]
             text = block["text"]
             blocks.append(lp.TextBlock(
