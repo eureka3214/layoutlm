@@ -16,9 +16,14 @@ if pdf_file is not None:
     png_bytes = pdf_page.get_pixmap()
 
 
-
+if "pixmaps" in pdf_page.get_display_list():
+    # Convert the PDF page to a PIL Image object
+    pixmap = pdf_page.getPixmap()
     pil_image = Image.frombytes(
-    mode="RGB")
+        mode="RGB",
+        size=pixmap.width_height,
+        data=pixmap.samples
+    )
 
     # Convert the PIL Image object to bytes
     bytes_io = BytesIO()
