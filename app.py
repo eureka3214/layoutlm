@@ -23,23 +23,6 @@ def extract_layouts(pdf_path):
         height = rect.height
         for block in blocks:
             blks.append(block)
-            # bbox = block["bbox"]
-            # text = block["text"]
-            # blks.append(lp.TextBlock(
-            #     np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
-            #     text))
-        # Get page dimensions
-        # width, height = page.bound().size
-
-        # Get page text and create blocks
-        # blocks = []
-        # for block in blocks:
-        #     st.write(block)
-        #     st.write(text)
-
-        # blocks.append(lp.TextBlock(
-        #         np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
-        #         text))
 
     #     # Create a layout object for the page
         page_layout = lp.Layout(blks)
@@ -57,16 +40,15 @@ def main():
     pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
     if pdf_file is not None:
         # Extract the page layouts
+        
+        # Display the page layouts
+    st.write(f"Number of pages: {len(layouts)}")
+    for i, layout in enumerate(layouts):
+        st.write(f"Page {i+1}")
+        st.write(layout)
         layouts = extract_layouts(pdf_file)
         lp.visualization.draw_text(canvas, layout)
-        # docUM = fitz.open(stream=pdf_file.read(), filetype="pdf")
-        # xref = docUM.get_new_xref()
-        # IMge = docUM.extract_image(xref)
-        # Display the page layouts
-        st.write(f"Number of pages: {len(layouts)}")
-        for i, layout in enumerate(layouts):
-            st.write(f"Page {i+1}")
-            st.write(layout)
+
         
             # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
 
