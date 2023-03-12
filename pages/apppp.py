@@ -16,14 +16,15 @@ if pdf_file is not None:
     # Count variable is to get the number of pages in the pdf
     for p in doc:
         count += 1
+    model = lp.Detectron2LayoutModel('lp://HJDataset/faster_rcnn_R_50_FPN_3x/config')
     for i in range(count):
         val = f"image_{i+1}.png"
         page = doc.load_page(i)
-        pdf_layout = lp.load_pdf(page)
-        annot= lp.visualization.draw_box(val,pdf_layout)
-        st.write(annot)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
+        pdf_layout = model.detect(val)
+        annot= lp.visualization.draw_box(val,pdf_layout)
+        st.write(annot)
         st.image(val)
 
         # pdf_layout = lp.load_pdf(val)
