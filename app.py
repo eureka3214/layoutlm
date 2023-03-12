@@ -1,22 +1,12 @@
 import streamlit as st
-import layoutparser as lp
-from pdf2image import convert_from_bytes
+import pdf2image
 
-# Upload PDF file
-pdf_file = st.file_uploader("Upload PDF", type=["pdf"])
+imagem_referencia = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png", "pdf", "tiff"])
+button = st.button("Confirm")
 
-if pdf_file is not None:
-    # Convert PDF to PIL Image
-    images = convert_from_bytes(pdf_file.read())
-    st.success("PDF file uploaded successfully!")
-    
-    # Display images
-    for i, image in enumerate(images):
-        st.image(image, caption=f"Page {i+1}")
-    
-    # Extract layout from the first page
-    layout = lp.Detectron2LayoutModel('lp://PubLayNet-frozen').detect(images[0])
-    
-    # Display bounding boxes
-    with st.expander("Layout"):
-        st.write(lp.draw_box(images[0], layout, box_width=2))
+if button and imagem_referencia is not None:
+
+    if imagem_referencia.type == "application/pdf":
+        images = pdf2image.convert_from_bytes(imagem_referencia.read())
+        for page in images:
+            st.image(page, use_column_width=True)
