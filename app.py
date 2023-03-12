@@ -8,6 +8,8 @@ def extract_layouts(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     xref = doc.get_new_xref()
     IMge = doc.extract_image(xref)
+    canvas = st.image(IMge)
+    lp.visualization.draw_text(canvas, layout)
     # page = doc[0]
     layouts = []
     for page in doc:
@@ -56,16 +58,15 @@ def main():
     if pdf_file is not None:
         # Extract the page layouts
         layouts = extract_layouts(pdf_file)
-        docUM = fitz.open(stream=pdf_file.read(), filetype="pdf")
-        xref = docUM.get_new_xref()
-        IMge = docUM.extract_image(xref)
+        # docUM = fitz.open(stream=pdf_file.read(), filetype="pdf")
+        # xref = docUM.get_new_xref()
+        # IMge = docUM.extract_image(xref)
         # Display the page layouts
         st.write(f"Number of pages: {len(layouts)}")
         for i, layout in enumerate(layouts):
             st.write(f"Page {i+1}")
             st.write(layout)
-            canvas = st.image(IMge)
-            lp.visualization.draw_text(canvas, layout)
+        
             # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
 
 if __name__ == "__main__":
