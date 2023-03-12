@@ -20,7 +20,7 @@ def extract_layouts(pdf_path):
         for block in blocks:
             bbox = block["bbox"]
             text = block["text"]
-        blks.append(lp.TextBlock(
+            blks.append(lp.TextBlock(
                 np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
                 text))
         # Get page dimensions
