@@ -51,4 +51,3 @@ if pdf_file is not None:
         
             # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
 
-i
