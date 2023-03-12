@@ -55,7 +55,7 @@ def main():
         # Extract the page layouts
         layouts = extract_layouts(pdf_file)
 
-        Display the page layouts
+        # Display the page layouts
         st.write(f"Number of pages: {len(layouts)}")
         for i, layout in enumerate(layouts):
             st.write(f"Page {i+1}")
