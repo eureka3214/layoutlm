@@ -11,7 +11,7 @@ pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 if pdf_file is not None:
     # Open the PDF file
     # pdf_file = "example.pdf"
-    pdf_doc = fitz.open(pdf_file)
+    pdf_doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
 
 # Get the first page of the PDF as an image
 pdf_page = pdf_doc[0]
