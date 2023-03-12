@@ -32,25 +32,24 @@ def extract_layouts(pdf_path):
 
     return layouts
 
-def main():
-    st.title("PDF Layout Extractor")
-    st.write("This app extracts the page layouts from a PDF file.")
 
-    # Allow user to upload a PDF file
-    pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
-    if pdf_file is not None:
-        # Extract the page layouts
-        
-        # Display the page layouts
-    st.write(f"Number of pages: {len(layouts)}")
-    for i, layout in enumerate(layouts):
-        st.write(f"Page {i+1}")
-        st.write(layout)
-        layouts = extract_layouts(pdf_file)
-        lp.visualization.draw_text(canvas, layout)
+st.title("PDF Layout Extractor")
+st.write("This app extracts the page layouts from a PDF file.")
+
+# Allow user to upload a PDF file
+pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
+if pdf_file is not None:
+    # Extract the page layouts
+    
+    # Display the page layouts
+st.write(f"Number of pages: {len(layouts)}")
+for i, layout in enumerate(layouts):
+    st.write(f"Page {i+1}")
+    st.write(layout)
+    layouts = extract_layouts(pdf_file)
+    lp.visualization.draw_text(canvas, layout)
 
         
             # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
 
-if __name__ == "__main__":
-    main()
+i
