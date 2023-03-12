@@ -13,14 +13,14 @@ def extract_layouts(pdf_path):
         txtpg = page.get_textpage()
         blocks = txtpg.extractDICT()
         st.write(blocks)
-
+        blks=[]
         rect = page.rect
         width = rect.width
         height = rect.height
-
-        bbox = block["bbox"]
-        text = block["text"]
-        blocks.append(lp.TextBlock(
+        for block in blocks:
+            bbox = block["bbox"]
+            text = block["text"]
+        blks.append(lp.TextBlock(
                 np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
                 text))
         # Get page dimensions
