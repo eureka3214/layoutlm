@@ -12,7 +12,7 @@ def extract_layouts(pdf_path):
 
         # Extract text blocks and add them to the layout
         for block in page.get_text("dict"):
-            bbox = lp.Rectangle(block["bbox"])
+            bbox = lp(block["bbox"])
             layout.add_text(
                 block["text"], bbox,
                 block_type="text",
