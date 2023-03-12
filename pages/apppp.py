@@ -4,7 +4,8 @@ import layoutparser as lp
 
 # Upload PDF file
 pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
-
+model = lp.Detectron2LayoutModel('lp://HJDataset/faster_rcnn_R_50_FPN_3x/config')
+st.write(model)
 # If a file was uploaded
 if pdf_file is not None:
     # pdf_layout = lp.load_pdf(pdf_file)
@@ -16,7 +17,6 @@ if pdf_file is not None:
     # Count variable is to get the number of pages in the pdf
     for p in doc:
         count += 1
-    model = lp.Detectron2LayoutModel('lp://HJDataset/faster_rcnn_R_50_FPN_3x/config')
     for i in range(count):
         val = f"image_{i+1}.png"
         page = doc.load_page(i)
