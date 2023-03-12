@@ -9,6 +9,9 @@ def extract_layouts(pdf_path):
     # page = doc[0]
     layouts = []
     for page in doc:
+        txtpg = page.get_textpage()
+        blocks = txtpg.extractBLOCKS()
+
         rect = page.rect
         width = rect.width
         height = rect.height
@@ -20,17 +23,20 @@ def extract_layouts(pdf_path):
         for block in page.getText("dict")["blocks"]:
             bbox = block["bbox"]
             text = block["text"]
-            blocks.append(lp.TextBlock(
-                np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
-                text))
+            st.write(bbox)
+            st.write(text)
 
-        # Create a layout object for the page
-        page_layout = lp.Layout(blocks, size=(width, height))
+    #         blocks.append(lp.TextBlock(
+    #             np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
+    #             text))
 
-        # Add the page layout to the list
-        layouts.append(page_layout)
+    #     # Create a layout object for the page
+    #     page_layout = lp.Layout(blocks, size=(width, height))
 
-    return layouts
+    #     # Add the page layout to the list
+    #     layouts.append(page_layout)
+
+    # return layouts
 
 def main():
     st.title("PDF Layout Extractor")
