@@ -60,7 +60,7 @@ def main():
         for i, layout in enumerate(layouts):
             st.write(f"Page {i+1}")
             st.write(layout)
-            lp.visualization.draw_text(canvas, layout, 'lr')
+            lp.visualization.draw_text(canvas, layout, arrangement='lr')
             # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
 
 if __name__ == "__main__":
