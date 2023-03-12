@@ -8,7 +8,7 @@ pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 # If a file was uploaded
 if pdf_file is not None:
-    pdf_doc = fitz.open(pdf_file)
+    pdf_doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
     pdf_page = pdf_doc[0]
     # Read the contents of the file
     # pdf_contents = pdf_file.read()
