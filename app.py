@@ -9,8 +9,11 @@ def extract_layouts(pdf_path):
     # page = doc[0]
     layouts = []
     for page in doc:
+        rect = page.rect
+        width = rect.width
+        height = rect.height
         # Get page dimensions
-        width, height = page.bound().size
+        # width, height = page.bound().size
 
         # Get page text and create blocks
         blocks = []
