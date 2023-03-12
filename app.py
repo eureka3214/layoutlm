@@ -8,7 +8,7 @@ def extract_layouts(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     xref = doc.get_new_xref()
     IMge = doc.extract_image(xref)
-    canvas = st.image(IMge)
+    canvas = IMge
     lp.visualization.draw_text(canvas, layout)
     # page = doc[0]
     layouts = []
