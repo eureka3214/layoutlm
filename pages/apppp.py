@@ -1,5 +1,6 @@
 import streamlit as st
 import fitz
+import layoutparser as lp
 
 # Upload PDF file
 pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
