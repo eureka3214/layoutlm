@@ -56,7 +56,9 @@ def main():
     if pdf_file is not None:
         # Extract the page layouts
         layouts = extract_layouts(pdf_file)
-
+        docUM = fitz.open(stream=pdf_path.read(), filetype="pdf")
+        xref = docUM.get_new_xref()
+        IMge = docUM.extract_image(xref)
         # Display the page layouts
         st.write(f"Number of pages: {len(layouts)}")
         for i, layout in enumerate(layouts):
