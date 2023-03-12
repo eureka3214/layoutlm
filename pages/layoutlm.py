@@ -13,7 +13,7 @@ pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 if pdf_file is not None:
     pdf_doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
     pdf_page = pdf_doc[0]
-    png_bytes = pdf_page.get_pixmap()
+    # png_bytes = pdf_page.get_pixmap()
 
 
 # if "pixmaps" in pdf_page.get_displaylist():nnn
@@ -28,7 +28,7 @@ if pdf_file is not None:
     # Convert the PIL Image object to bytes
     bytes_io = BytesIO()
     pil_image.save(bytes_io, format="PNG")
-    png_bytes = bytes_io.getvalue()
+    pixmap = bytes_io.getvalue()
     st.image(png_bytes, caption="PDF Page 1 as PNG")
 
     # with open("output.png", "wb") as f:
