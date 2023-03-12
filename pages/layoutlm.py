@@ -18,9 +18,7 @@ if pdf_file is not None:
 
 
     pil_image = Image.frombytes(
-    mode="RGB",
-    size=pdf_page.pixmap.width_height,
-    data=pdf_page.pixmap.samples)
+    mode="RGB")
 
     # Convert the PIL Image object to bytes
     bytes_io = BytesIO()
