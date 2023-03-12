@@ -1,53 +1,47 @@
 import streamlit as st
 import fitz
 import layoutparser as lp
-import numpy as np
-import pandas as pd
 
 def extract_layouts(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
-    xref = doc.get_new_xref()
-    IMge = doc.extract_image(xref)
-    canvas = IMge
-    
-    # page = doc[0]
     layouts = []
     for page in doc:
+        img = page.get_pixmap()
+        image_size = lp.Rectangle(0, 0, img.width, img.height)
+        layout = lp.Layout(image_size)
 
-        txtpg = page.get_textpage()
-        blocks = txtpg.extractDICT()
-        # st.write(blocks)
-        blks=[]
-        rect = page.rect
-        width = rect.width
-        height = rect.height
-        for block in blocks:
-            blks.append(block)
+        # Extract text blocks and add them to the layout
+        for block in page.get_text("dict"):
+            bbox = lp.Rectangle(block["bbox"])
+            layout.add_text(
+                block["text"], bbox,
+                block_type="text",
+                confidence=None
+            )
 
-    #     # Create a layout object for the page
-        page_layout = lp.Layout(blks)
+        # Extract image blocks and add them to the layout
+        for i, img_block in enumerate(page.get_images(output="dict")):
+            bbox = lp.Rectangle(img_block["bbox"])
+            layout.add_image(
+                f"image_{i}", bbox,
+                block_type="image",
+                metadata={"uri": img_block["image"]},
+                confidence=None
+            )
 
-    #     # Add the page layout to the list
-        layouts.append(page_layout)
+        layouts.append(layout)
 
-    return layouts, canvas
-
+    return layouts
 
 st.title("PDF Layout Extractor")
-st.write("This app extracts the page layouts from a PDF file.")
+st.write("This app extracts the page layouts from a PDF file and shows bounding boxes around detected elements.")
 
 # Allow user to upload a PDF file
 pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
 if pdf_file is not None:
-    layouts , canvas = extract_layouts(pdf_file)
+    layouts = extract_layouts(pdf_file)
     # Display the page layouts
     st.write(f"Number of pages: {len(layouts)}")
     for i, layout in enumerate(layouts):
         st.write(f"Page {i+1}")
-        st.write(layout)
-        C = lp.visualization.draw_text(canvas, layout)
-        st.image(C)
-
-        
-            # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
-
+        st.image(layout.visualize(), caption=f"Page {i+1} layout with bounding boxes", use_column_width=True)
