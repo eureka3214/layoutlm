@@ -17,10 +17,12 @@ def extract_layouts(pdf_path):
 
         # Get page text and create blocks
         blocks = []
-        for block in page.get_text("blocks"):
-            bbox = block[0]
-            text = block[4]
-            blocks.append(lp.TextBlock(np.array([bbox]),text))
+        for block in page.getText("dict")["blocks"]:
+            bbox = block["bbox"]
+            text = block["text"]
+            blocks.append(lp.TextBlock(
+                np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
+                text))
 
         # Create a layout object for the page
         page_layout = lp.Layout(blocks, size=(width, height))
