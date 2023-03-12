@@ -30,7 +30,7 @@ def extract_layouts(pdf_path):
     #     # Add the page layout to the list
         layouts.append(page_layout)
 
-    return layouts
+    return layouts, canvas
 
 
 st.title("PDF Layout Extractor")
@@ -39,7 +39,7 @@ st.write("This app extracts the page layouts from a PDF file.")
 # Allow user to upload a PDF file
 pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
 if pdf_file is not None:
-    layouts = extract_layouts(pdf_file)
+    layouts , canvas = extract_layouts(pdf_file)
     # Display the page layouts
     st.write(f"Number of pages: {len(layouts)}")
     for i, layout in enumerate(layouts):
