@@ -16,10 +16,10 @@ if pdf_file is not None:
     # Get the first page of the PDF as an image
     pdf_page = pdf_doc[0]
     pixmap = pdf_page.get_pixmap()
-    png_bytes = pixmap.getImageData(output="png")
+    # png_bytes = pixmap.get_ImageData(output="png")
 
     # Convert the PNG image to a PIL Image object
-    png_io = BytesIO(png_bytes)
+    png_io = BytesIO(pixmap)
     pil_image = Image.open(png_io)
 
     # Run the layout analysis on the PIL Image object
