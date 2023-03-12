@@ -27,9 +27,9 @@ if pdf_file is not None:
 
     # Convert the PIL Image object to bytes
     bytes_io = BytesIO()
-    pil_image.save(bytes_io, format="PNG")
+    pil = pil_image.save(bytes_io, format="PNG")
     pixmap = bytes_io.getvalue()
-    st.image(pixmap, caption="PDF Page 1 as PNG")
+    st.image(pil, caption="PDF Page 1 as PNG")
 
     # with open("output.png", "wb") as f:
     #     f.write(png_bytes)
