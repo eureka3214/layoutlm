@@ -31,10 +31,13 @@ if pdf_file is not None:
     pixmap = bytes_io.getvalue()
     st.image(pixmap, caption="PDF Page 1 as PNG")
 
+
     # with open("output.png", "wb") as f:
     #     f.write(png_bytes)
     # Read the contents of the file
     # pdf_contents = pdf_file.read()
     layouts = lp.io.load_pdf(pdf_file)
+    lp.draw_box(pixmap, pdf_layout[0])
+
     # Do something with the PDF contents
     # st.write(layouts)
