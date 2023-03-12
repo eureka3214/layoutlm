@@ -7,12 +7,12 @@ pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 # If a file was uploaded
 if pdf_file is not None:
-    
+    pdf_layout = lp.load_pdf(pdf_file)
     doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
     zoom = 4
     mat = fitz.Matrix(zoom, zoom)
     count = 0
-    pdf_layout = lp.load_pdf(pdf_file)
+    
     # Count variable is to get the number of pages in the pdf
     for p in doc:
         count += 1
