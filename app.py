@@ -5,7 +5,8 @@ import numpy as np
 import pandas as pd
 
 def extract_layouts(pdf_path):
-    doc = fitz.open(pdf_path)
+    doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
+    # page = doc[0]
     layouts = []
     for page in doc:
         # Get page dimensions
