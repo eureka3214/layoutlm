@@ -45,7 +45,8 @@ if pdf_file is not None:
     for i, layout in enumerate(layouts):
         st.write(f"Page {i+1}")
         st.write(layout)
-        lp.visualization.draw_text(canvas, layout)
+        C = lp.visualization.draw_text(canvas, layout)
+        st.image(C)
 
         
             # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
