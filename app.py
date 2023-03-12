@@ -20,9 +20,7 @@ def extract_layouts(pdf_path):
         for block in page.get_text("blocks"):
             bbox = block[0]
             text = block[4]
-            blocks.append(lp.TextBlock(
-                np.array([bbox]),
-                text))
+            blocks.append(lp.TextBlock(np.array([bbox]),text))
 
         # Create a layout object for the page
         page_layout = lp.Layout(blocks, size=(width, height))
