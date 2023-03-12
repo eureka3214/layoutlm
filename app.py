@@ -12,7 +12,7 @@ def extract_layouts(pdf_path):
 
         txtpg = page.get_textpage()
         blocks = txtpg.extractDICT()
-        st.write(blocks)
+        # st.write(blocks)
         blks=[]
         rect = page.rect
         width = rect.width
@@ -55,11 +55,11 @@ def main():
         # Extract the page layouts
         layouts = extract_layouts(pdf_file)
 
-        # Display the page layouts
-        # st.write(f"Number of pages: {len(layouts)}")
-        # for i, layout in enumerate(layouts):
-        #     st.write(f"Page {i+1}")
-        #     st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
+        Display the page layouts
+        st.write(f"Number of pages: {len(layouts)}")
+        for i, layout in enumerate(layouts):
+            st.write(f"Page {i+1}")
+            st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
 
 if __name__ == "__main__":
     main()
