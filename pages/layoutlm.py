@@ -37,7 +37,7 @@ if pdf_file is not None:
     # Read the contents of the file
     # pdf_contents = pdf_file.read()
     layouts = lp.io.load_pdf(pdf_file)
-    lp.draw_box(pixmap, pdf_layout[0])
+    lp.draw_box(pixmap,layouts)
 
     # Do something with the PDF contents
     # st.write(layouts)
