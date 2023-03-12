@@ -19,7 +19,9 @@ if pdf_file is not None:
     for i in range(count):
         val = f"image_{i+1}.png"
         page = doc.load_page(i)
-        st.write(page)
+        pdf_layout = lp.load_pdf(page)
+        annot= lp.visualization.draw_box(val,pdf_layout)
+        st.write(annot)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
         st.image(val)
@@ -29,9 +31,9 @@ if pdf_file is not None:
     doc.close()
 
 
-    pdf_layout = lp.load_pdf(pdf_file)
-    annot= lp.visualization.draw_box(val,pdf_layout)
-    st.write(annot)
+    # pdf_layout = lp.load_pdf(pdf_file)
+    # annot= lp.visualization.draw_box(val,pdf_layout)
+    # st.write(annot)
     
     # st.write(pdf_layout)
 
