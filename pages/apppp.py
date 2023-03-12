@@ -22,7 +22,7 @@ if pdf_file is not None:
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
         annot= lp.draw_box(val, pdf_layout)
-        st.image(annot)
+        st.write(annot)
     doc.close()
 
     
