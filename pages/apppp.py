@@ -21,7 +21,8 @@ if pdf_file is not None:
         page = doc.load_page(i)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
-        annot= lp.draw_box(val, pdf_layout)
+        pdf_layout = lp.load_pdf(val)
+        annot= lp.visualization.draw_box(val,layouts)
         st.write(annot)
     doc.close()
 
