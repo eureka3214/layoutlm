@@ -18,8 +18,8 @@ def extract_layouts(pdf_path):
         # Get page text and create blocks
         blocks = []
         for block in page.get_text("blocks"):
-            bbox = block['bbox']
-            text = block['text']
+            bbox = block[0]
+            text = block[4]
             blocks.append(lp.TextBlock(
                 np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
                 text))
