@@ -12,6 +12,7 @@ if pdf_file is not None:
     zoom = 4
     mat = fitz.Matrix(zoom, zoom)
     count = 0
+    pdf_layout = lp.load_pdf(pdf_file)
     # Count variable is to get the number of pages in the pdf
     for p in doc:
         count += 1
@@ -20,21 +21,23 @@ if pdf_file is not None:
         page = doc.load_page(i)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
-        st.image(val)
+        annot= lp.draw_box(val, pdf_layout)
+        st.image(annot)
     doc.close()
 
-    pdf_layout = lp.load_pdf(pdf_file)
+    
     # st.write(pdf_layout)
-    model = lp.Detectron2LayoutModel('lp://PubLayNet_Faster_R-CNN')
-    layout = model.detect(val)
 
-    # Draw the bounding boxes on the PDF page
-    annotated_pdf = lp.draw_box(pdf_file, layout, page_id=0)
+    # model = lp.Detectron2LayoutModel('lp://PubLayNet_Faster_R-CNN')
+#     layout = model.detect(pil_image)
 
-    # Export the annotated PDF as an HTML file
-    html_io = BytesIO()
-    annotated_pdf.save(html_io, "html")
-    html_str = html_io.getvalue().decode()
+#     # Draw the bounding boxes on the PDF page
+#     annotated_pdf = lp.draw_box(pdf_file, layout, page_id=0)
 
-    # Display the HTML file in the Streamlit app
-    st.components.v1.html(html_str, width=700, height=800)
+#     # Export the annotated PDF as an HTML file
+#     html_io = BytesIO()
+#     annotated_pdf.save(html_io, "html")
+#     html_str = html_io.getvalue().decode()
+
+#     # Display the HTML file in the Streamlit app
+#     st.components.v1.html(html_str, width=700, height=800)
