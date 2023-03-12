@@ -21,7 +21,7 @@ if pdf_file is not None:
     pixmap = pdf_page.get_pixmap()
     pil_image = Image.frombytes(
         mode="RGB",
-        size=pixmap.width_height,
+        size=pixmap.size,
         data=pixmap.samples
     )
 
