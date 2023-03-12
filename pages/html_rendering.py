@@ -15,7 +15,7 @@ if pdf_file is not None:
 
     # Get the first page of the PDF as an image
     pdf_page = pdf_doc[0]
-    pixmap = pdf_page.getPixmap()
+    pixmap = pdf_page.get_pixmap()
     png_bytes = pixmap.getImageData(output="png")
 
     # Convert the PNG image to a PIL Image object
