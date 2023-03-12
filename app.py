@@ -39,13 +39,13 @@ st.write("This app extracts the page layouts from a PDF file.")
 # Allow user to upload a PDF file
 pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
 if pdf_file is not None:
+    layouts = extract_layouts(pdf_file)
     # Display the page layouts
     st.write(f"Number of pages: {len(layouts)}")
     for i, layout in enumerate(layouts):
         st.write(f"Page {i+1}")
         st.write(layout)
-layouts = extract_layouts(pdf_file)
-lp.visualization.draw_text(canvas, layout)
+        lp.visualization.draw_text(canvas, layout)
 
         
             # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
