@@ -7,8 +7,7 @@ pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 # If a file was uploaded
 if pdf_file is not None:
-    pdf_layout = lp.load_pdf(pdf_file)
-    st.write(pdf_layout)
+    
     doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
     zoom = 4
     mat = fitz.Matrix(zoom, zoom)
@@ -23,3 +22,6 @@ if pdf_file is not None:
         pix.save(val)
         st.image(val)
     doc.close()
+
+    pdf_layout = lp.load_pdf(pdf_file)
+    st.write(pdf_layout)
