@@ -1,4 +1,4 @@
-import streamlit
+import streamlit as st
 import fitz
 
 # Upload PDF file
