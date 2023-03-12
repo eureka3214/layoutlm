@@ -18,7 +18,7 @@ if pdf_file is not None:
 
 # if "pixmaps" in pdf_page.get_displaylist():nnn
     # Convert the PDF page to a PIL Image object
-    pixmap = pdf_page.getPixmap()
+    pixmap = pdf_page.get_pixmap()
     pil_image = Image.frombytes(
         mode="RGB",
         size=pixmap.width_height,
