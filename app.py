@@ -1,39 +1,48 @@
 import streamlit as st
-import io
-import layoutparser as lp
 import fitz
-from PIL import Image
+import layoutparser as lp
+import numpy as np
+import pandas as pd
 
+def extract_layouts(pdf_path):
+    doc = fitz.open(pdf_path)
+    layouts = []
+    for page in doc:
+        # Get page dimensions
+        width, height = page.bound().size
 
-def visualize_layouts(pdf_file):
-    # Convert PDF to images
-    with io.BytesIO(pdf_file.read()) as pdf_buffer:
-        doc = fitz.open(stream=pdf_buffer.read(), filetype="pdf")
-        pil_images = []
-        for page in doc:
-            pix = page.get_pixmap(alpha=False)
-            img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-            pil_images.append(img)
-    
-    # Extract layouts
-    # layouts = lp.models.Detectron2LayoutModel('lp://PubLayNet-faster_rcnn').detect(pil_images)
-    
-    # Display layouts
-    
+        # Get page text and create blocks
+        blocks = []
+        for block in page.getText("dict")["blocks"]:
+            bbox = block["bbox"]
+            text = block["text"]
+            blocks.append(lp.TextBlock(
+                np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
+                text))
 
-# Streamlit app
-st.title('PDF Layout Visualizer')
+        # Create a layout object for the page
+        page_layout = lp.Layout(blocks, size=(width, height))
 
-pdf_file = st.file_uploader('Upload a PDF file', type='pdf')
-if pdf_file is not None:
+        # Add the page layout to the list
+        layouts.append(page_layout)
 
-  pdf_layout = lp.load_pdf(pdf_file)
-  # visualize_layouts(pdf_file)
-  for page_layout in pdf_layout:
-        page_image = pil_images[page_layout.page_number]
-        st.image(page_image, use_column_width=True)
-        for block in page_layout.blocks:
-            st.write(f'Block {block.id} ({block.type}):')
-            st.write(block)
-            st.image(block.crop(page_image), use_column_width=True)
+    return layouts
 
+def main():
+    st.title("PDF Layout Extractor")
+    st.write("This app extracts the page layouts from a PDF file.")
+
+    # Allow user to upload a PDF file
+    pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
+    if pdf_file is not None:
+        # Extract the page layouts
+        layouts = extract_layouts(pdf_file)
+
+        # Display the page layouts
+        st.write(f"Number of pages: {len(layouts)}")
+        for i, layout in enumerate(layouts):
+            st.write(f"Page {i+1}")
+            st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
+
+if __name__ == "__main__":
+    main()
