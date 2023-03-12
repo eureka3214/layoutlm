@@ -6,6 +6,7 @@ import pandas as pd
 
 def extract_layouts(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
+    IMge = doc.extract_image()
     # page = doc[0]
     layouts = []
     for page in doc:
@@ -60,7 +61,7 @@ def main():
         for i, layout in enumerate(layouts):
             st.write(f"Page {i+1}")
             st.write(layout)
-            canvas = st.image()
+            canvas = st.image(IMge)
             lp.visualization.draw_text(canvas, layout)
             # st.image(layout.to_image(), caption=f"Page {i+1} layout", use_column_width=True)
 
