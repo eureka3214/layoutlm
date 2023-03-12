@@ -18,11 +18,12 @@ def extract_layouts(pdf_path):
         width = rect.width
         height = rect.height
         for block in blocks:
-            bbox = block["bbox"]
-            text = block["text"]
-            blks.append(lp.TextBlock(
-                np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
-                text))
+            blks.append(block)
+            # bbox = block["bbox"]
+            # text = block["text"]
+            # blks.append(lp.TextBlock(
+            #     np.array([bbox[:2], bbox[2:], [bbox[0], bbox[3]], [bbox[2], bbox[1]]]),
+            #     text))
         # Get page dimensions
         # width, height = page.bound().size
 
@@ -37,7 +38,7 @@ def extract_layouts(pdf_path):
         #         text))
 
     #     # Create a layout object for the page
-        page_layout = lp.Layout(blocks, size=(width, height))
+        page_layout = lp.Layout(blks, size=(width, height))
 
     #     # Add the page layout to the list
         layouts.append(page_layout)
