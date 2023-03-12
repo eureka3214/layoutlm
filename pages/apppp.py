@@ -19,16 +19,19 @@ if pdf_file is not None:
     for i in range(count):
         val = f"image_{i+1}.png"
         page = doc.load_page(i)
+        st.write(page)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
         st.image(val)
 
         # pdf_layout = lp.load_pdf(val)
-        pdf_layout = lp.load_pdf(pdf_file)
-        annot= lp.visualization.draw_box(val,pdf_layout)
-        st.write(annot)
+        
     doc.close()
 
+
+    pdf_layout = lp.load_pdf(pdf_file)
+    annot= lp.visualization.draw_box(val,pdf_layout)
+    st.write(annot)
     
     # st.write(pdf_layout)
 
