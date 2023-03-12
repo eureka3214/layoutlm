@@ -6,7 +6,8 @@ import pandas as pd
 
 def extract_layouts(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
-    IMge = doc.extract_image()
+    xref = doc.get_new_xref()
+    IMge = doc.extract_image(xref)
     # page = doc[0]
     layouts = []
     for page in doc:
