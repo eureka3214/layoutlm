@@ -16,7 +16,7 @@ if pdf_file is not None:
     png_bytes = pdf_page.get_pixmap()
 
 
-if "pixmaps" in pdf_page.get_display_list():
+if "pixmaps" in pdf_page.get_displaylist():
     # Convert the PDF page to a PIL Image object
     pixmap = pdf_page.getPixmap()
     pil_image = Image.frombytes(
