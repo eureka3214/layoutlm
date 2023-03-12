@@ -9,6 +9,7 @@ def extract_layouts(pdf_path):
     # page = doc[0]
     layouts = []
     for page in doc:
+
         txtpg = page.get_textpage()
         blocks = txtpg.extractBLOCKS()
 
@@ -21,9 +22,10 @@ def extract_layouts(pdf_path):
         # Get page text and create blocks
         blocks = []
         for block in blocks:
+
             bbox = block["bbox"]
             text = block["text"]
-            st.write(bbox)
+            st.write(block)
             st.write(text)
 
     #         blocks.append(lp.TextBlock(
