@@ -20,7 +20,7 @@ def extract_layouts(pdf_path):
 
         # Get page text and create blocks
         blocks = []
-        for block in page.getText("dict")["blocks"]:
+        for block in blocks:
             bbox = block["bbox"]
             text = block["text"]
             st.write(bbox)
