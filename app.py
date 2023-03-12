@@ -38,7 +38,7 @@ def extract_layouts(pdf_path):
         #         text))
 
     #     # Create a layout object for the page
-        page_layout = lp.Layout(blks, size=(width, height))
+        page_layout = lp.Layout(blks)
 
     #     # Add the page layout to the list
         layouts.append(page_layout)
