@@ -15,7 +15,8 @@ if pdf_file is not None:
     for block in layout_doc:
         txtblock = lp.TextBlock
         for txtblock in block:
-            st.write(txtblock)
+            coor = txtblock.coordinates
+            st.write(coor)
         # if isinstance(block, lp.TextBlock):
         #     # Draw a red bounding box around the text block
         #     box = block.coordinates
