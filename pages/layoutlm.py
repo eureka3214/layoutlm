@@ -13,11 +13,12 @@ if pdf_file is not None:
     count = 0
     layout_doc = lp.load_pdf(pdf_file)
     for block in layout_doc:
-        if isinstance(block, lp.TextBlock):
-            # Draw a red bounding box around the text block
-            box = block.coordinates
-            st.write(box)
-            # img = lp.draw_box(img, box, color="red", thickness=2)
+        st.write(block)
+        # if isinstance(block, lp.TextBlock):
+        #     # Draw a red bounding box around the text block
+        #     box = block.coordinates
+        #     st.write(box)
+        #     # img = lp.draw_box(img, box, color="red", thickness=2)
     # Count variable is to get the number of pages in the pdf
     # for p in doc:
     #     count += 1
