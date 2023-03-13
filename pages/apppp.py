@@ -4,9 +4,7 @@ import layoutparser as lp
 
 # Upload PDF file
 pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
-# model = lp.Detectron2LayoutModel('lp://HJDataset/faster_rcnn_R_50_FPN_3x/config')
-# st.write(model)
-# If a file was uploaded
+
 if pdf_file is not None:
     # pdf_layout = lp.load_pdf(pdf_file)
     doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
