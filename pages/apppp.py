@@ -24,7 +24,7 @@ if pdf_file is not None:
         pix.save(val)
         # pdf_layout = model.detect(val)
         # annot= lp.visualization.draw_box(val,pdf_layout)
-        st.write(annot)
+        # st.write(annot)
         st.image(val)
 
         # pdf_layout = lp.load_pdf(val)
