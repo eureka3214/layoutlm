@@ -4,7 +4,7 @@ import layoutparser as lp
 
 # Upload PDF file
 pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
-model = lp.Detectron2LayoutModel('lp://HJDataset/faster_rcnn_R_50_FPN_3x/config')
+# model = lp.Detectron2LayoutModel('lp://HJDataset/faster_rcnn_R_50_FPN_3x/config')
 st.write(model)
 # If a file was uploaded
 if pdf_file is not None:
@@ -22,8 +22,8 @@ if pdf_file is not None:
         page = doc.load_page(i)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
-        pdf_layout = model.detect(val)
-        annot= lp.visualization.draw_box(val,pdf_layout)
+        # pdf_layout = model.detect(val)
+        # annot= lp.visualization.draw_box(val,pdf_layout)
         st.write(annot)
         st.image(val)
 
@@ -31,23 +31,3 @@ if pdf_file is not None:
         
     doc.close()
 
-
-    # pdf_layout = lp.load_pdf(pdf_file)
-    # annot= lp.visualization.draw_box(val,pdf_layout)
-    # st.write(annot)
-    
-    # st.write(pdf_layout)
-
-    # model = lp.Detectron2LayoutModel('lp://PubLayNet_Faster_R-CNN')
-#     layout = model.detect(pil_image)
-
-#     # Draw the bounding boxes on the PDF page
-#     annotated_pdf = lp.draw_box(pdf_file, layout, page_id=0)
-
-#     # Export the annotated PDF as an HTML file
-#     html_io = BytesIO()
-#     annotated_pdf.save(html_io, "html")
-#     html_str = html_io.getvalue().decode()
-
-#     # Display the HTML file in the Streamlit app
-#     st.components.v1.html(html_str, width=700, height=800)
