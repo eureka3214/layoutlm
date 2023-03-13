@@ -13,7 +13,9 @@ if pdf_file is not None:
     count = 0
     layout_doc = lp.load_pdf(pdf_file)
     for block in layout_doc:
-        st.write(block)
+        txtblock = lp.TextBlock
+        for txtblock in block:
+            st.write(txtblock)
         # if isinstance(block, lp.TextBlock):
         #     # Draw a red bounding box around the text block
         #     box = block.coordinates
