@@ -11,7 +11,13 @@ if pdf_file is not None:
     zoom = 4
     mat = fitz.Matrix(zoom, zoom)
     count = 0
-    
+    layout_doc = lp.load_pdf(pdf_file)
+    for block in layout_doc:
+        if isinstance(block, lp.TextBlock):
+            # Draw a red bounding box around the text block
+            box = block.coordinates
+            st.write(box)
+            # img = lp.draw_box(img, box, color="red", thickness=2)
     # Count variable is to get the number of pages in the pdf
     for p in doc:
         count += 1
@@ -20,12 +26,7 @@ if pdf_file is not None:
         page = doc.load_page(i)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
-        # pdf_layout = model.detect(val)
-        # annot= lp.visualization.draw_box(val,pdf_layout)
-        # st.write(annot)
         st.image(val)
 
-        # pdf_layout = lp.load_pdf(val)
-        
     doc.close()
 
