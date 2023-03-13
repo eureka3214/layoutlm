@@ -6,17 +6,12 @@ import layoutparser as lp
 pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 if pdf_file is not None:
-    # pdf_layout = lp.load_pdf(pdf_file)
-    doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
-    zoom = 4
-    mat = fitz.Matrix(zoom, zoom)
-    count = 0
     layout_doc = lp.load_pdf(pdf_file)
     for block in layout_doc:
         txtblock = lp.TextBlock
         for txtblock in block:
-            coor = txtblock.coordinates
-            st.write(coor)
+            box = txtblock.coordinates
+            st.write(box)
         # if isinstance(block, lp.TextBlock):
         #     # Draw a red bounding box around the text block
         #     box = block.coordinates
