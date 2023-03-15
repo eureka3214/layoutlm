@@ -18,4 +18,4 @@ st.title("PDF get text ")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
-    display_fonts(uploaded_file)
+    display_blocks(uploaded_file)
