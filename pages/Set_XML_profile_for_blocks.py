@@ -12,6 +12,40 @@ tag_contents = {
     'None': 'nothing....'
 }
 
+
+
+# Define the XML template string
+xml_template = """<Course>
+    <Objectives>
+        <Objective>{objective}</Objective>
+    </Objectives>
+    <Chapter>
+        <Chapter_name>{chapter_name}</Chapter_name>
+        <Topics>
+            <Topic>
+                <Topic_name>{topic_name}</Topic_name>
+                <Contents>{topic_contents}</Contents>
+                <sub_Topics>
+                    <sub_Topic>
+                        <sub_Topic_name>{sub_topic_name}</sub_Topic_name>
+                        <sub_Topic_Contents>{sub_topic_contents}</sub_Topic_Contents>
+                    </sub_Topic>
+                </sub_Topics>
+            </Topic>
+        </Topics>
+    </Chapter>
+</Course>"""
+
+
+# Define a function that replaces the placeholders in the XML template with the corresponding values from the dictionary
+def fill_template(template, dictionary):
+    # Join the topic_contents and sub_topic_contents lists into strings separated by newlines
+    dictionary['topic_contents'] = '\n'.join(dictionary['topic_contents'])
+    dictionary['sub_topic_contents'] = '\n'.join(dictionary['sub_topic_contents'])
+    return template.format(**dictionary)
+
+
+
 def display_blocks(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     pgno = st.number_input("Input page number", min_value=0)
@@ -42,4 +76,11 @@ uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 if uploaded_file is not None:
     display_blocks(uploaded_file)
 
-st.write(tag_contents)
+st.write("Dictionary contents:")
+for key, value in tag_contents.items():
+    st.write(f"{key}: {value}")
+
+# Display the XML code generated from the template and dictionary
+st.write("Generated XML code:")
+xml_code = fill_template(xml_template, tag_contents)
+st.code(xml_code, language="xml")
