@@ -18,10 +18,10 @@ def display_blocks(pdf_path):
                     for s in l["spans"]:
                         text = s["text"]
                         # create a button for the line
-                        with st.expander(text):
-                            block_xml = page.get_text("xml", b)
+                        # with st.expander(text):
+                        block_xml = page.get_text("xml", b)
                             # with st.expander("Block XML"):
-                            st.code(block_xml)
+                        st.code(block_xml)
 
 
 st.title("PDF get xml of selected block")
