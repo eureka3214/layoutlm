@@ -14,7 +14,7 @@ def display_blocks(pdf_path):
             for l in b["lines"]:  # iterate through the text lines
                 for s in l["spans"]:
                     text = s["text"]
-                    with st.expander("Text Information"):
+                    with st.expander("Text line"):
                         st.write(text)
         
     # create radio buttons for each block
