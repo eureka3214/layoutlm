@@ -19,7 +19,7 @@ def display_blocks(pdf_path):
                         text = s["text"]
                         # create a button for the line
                         # with st.expander(text):
-                        block_xml = page.get_text("xml", l)
+                        block_xml = page.get_text("xml", s)
                             # with st.expander("Block XML"):
                         st.code(block_xml)
 
