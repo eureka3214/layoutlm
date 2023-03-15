@@ -4,15 +4,16 @@ import fitz
 
 def display_blocks(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
-    page = doc[0]
+    # page = doc[0]
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
-    blocks = page.get_text("dict")["blocks"]
-    for b in blocks:  # iterate through the text blocks
-        for l in b["lines"]:  # iterate through the text lines
-            for s in l["spans"]:
-                st.write(s["text"])
-    
+    for page in docs:
+        blocks = page.get_text("dict")["blocks"]
+        for b in blocks:  # iterate through the text blocks
+            for l in b["lines"]:  # iterate through the text lines
+                for s in l["spans"]:
+                    st.write(s["text"])
+        
     # create radio buttons for each block
     block_index = st.radio("Select a block:", [i for i in range(len(blocks))])
     
