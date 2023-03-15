@@ -10,7 +10,7 @@ def display_blocks(pdf_path):
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
         blocks = page.get_text()
-        st.write(block)
+        st.write(blocka)
       
 
 st.title("PDF get text ")
