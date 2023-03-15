@@ -10,7 +10,7 @@ def display_blocks(pdf_path):
     blocks = page.get_text("dict")["blocks"]
     for b in blocks:  # iterate through the text blocks
         for l in b["lines"]:  # iterate through the text lines
-            st.write(lines)
+            st.write(l)
     
     # create radio buttons for each block
     block_index = st.radio("Select a block:", [i for i in range(len(blocks))])
