@@ -19,7 +19,7 @@ def display_blocks(pdf_path):
                         # st.write(text)
                         selected_value = st.selectbox(f"{text}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
                         st.write("Appending content to", selected_value)
-                        st.session_state.setdefault(selected_value, []).append(text)
+                        # st.session_state.(selected_value, []).append(text)
 
 st.title("Set XML profile for selected blocks")
 
@@ -27,11 +27,3 @@ uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
     display_blocks(uploaded_file)
-
-# Display the content for each category
-st.write("Content for each category:")
-for category, content_list in st.session_state.items():
-    if category not in ['_legacy_config', '_is_running']:
-        st.write(f"Category {category}:")
-        for content in content_list:
-            st.write(content)
