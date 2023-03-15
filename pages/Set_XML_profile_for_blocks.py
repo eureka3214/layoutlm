@@ -19,7 +19,7 @@ def display_blocks(pdf_path):
                         st.write(text)
                         selected_value = st.selectbox(f"Select a category for Text Block {i}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
                         st.write("Appending content to", selected_value)
-                        st.session_state.setdefault(selected_value, []).append(b["text"])
+                        st.session_state.setdefault(selected_value, []).append(text)
 
 st.title("Set XML profile for selected blocks")
 
