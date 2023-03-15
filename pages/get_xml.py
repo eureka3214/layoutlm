@@ -25,7 +25,7 @@ def display_fonts(pdf_path):
     page = doc[0]
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
-    blocks = page.get_text("xhtml")
+    blocks = page.get_text("xml")
     st.write(blocks)
     # for b in blocks:  # iterate through the text blocks
     #     # lines = b["lines"]
