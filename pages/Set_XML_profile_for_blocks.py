@@ -18,8 +18,7 @@ def display_blocks(pdf_path):
                     for s in l["spans"]:
                         text = s["text"]
                         x = st.write(text)
-                if selected_value:
-                    list[x] = selected_value
+                        list[x] = selected_value
 
                         # st.write(text)
                         # selected_value = st.selectbox(f"{text}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
