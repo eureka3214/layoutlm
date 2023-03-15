@@ -26,10 +26,11 @@ def display_fonts(pdf_path):
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
     blocks = page.get_text("xhtml")
-    for b in blocks:  # iterate through the text blocks
-        # lines = b["lines"]
-        st.write(b)
-        # for l in b["lines"]:  # iterate through the text lines
+    st.write(b)
+    # for b in blocks:  # iterate through the text blocks
+    #     # lines = b["lines"]
+    #     st.write(b)
+    #     # for l in b["lines"]:  # iterate through the text lines
         #     for s in l["spans"]:  # iterate through the text spans
         #         st.write("")
         #         font_properties = "Font: '%s' (%s), size %g, color #%06x" % (
