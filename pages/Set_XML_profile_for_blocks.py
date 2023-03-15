@@ -2,7 +2,7 @@ import streamlit as st
 import fitz
 
 
-list =[]
+list ={}
 def display_blocks(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     pgno = st.number_input("Input page number", min_value=0)
@@ -13,11 +13,12 @@ def display_blocks(pdf_path):
         blocks = page.get_text("dict")["blocks"]
         for i, b in enumerate(blocks): 
             with st.expander(f"Text Block {i}"):
-                selected_value = st.selectbox(f"{i}", ['Objectives', 'sub_topic_name', 'sub_topic_Contents', 'Chapter'])
+                selected_value = st.selectbox(f"{i}", ['None','Objectives', 'sub_topic_name', 'sub_topic_Contents', 'Chapter'])
                 for l in b["lines"]:
                     for s in l["spans"]:
                         text = s["text"]
                         st.write(text)
+                        list[selected_value] = text
 
                         # st.write(text)
                         # selected_value = st.selectbox(f"{text}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
@@ -30,3 +31,5 @@ uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
     display_blocks(uploaded_file)
+
+st.write(list)
