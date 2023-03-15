@@ -10,7 +10,7 @@ def display_blocks(pdf_path):
         # read page text as a dictionary, suppressing extra spaces in CJK fonts
         blocks = page.get_text("dict")["blocks"]
         for i, b in enumerate(blocks): 
-            with st.beta_expander(f"Text Block {i} - {selected_value}"):
+            with st.expander(f"Text Block {i}"):
                 # iterate through the text lines in the block
                 for l in b["lines"]:
                     # iterate through the text spans in the line
