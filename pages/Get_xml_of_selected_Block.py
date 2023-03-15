@@ -19,12 +19,13 @@ def display_blocks(pdf_path):
                     text = s["text"]
                     # create a button for the line
                     # with st.expander(text):
-                    block_xml = page.get_text("xml", text)
-                        # with st.expander("Block XML"):
                     st.write(text)
-                    # with st.container():
-                    with st.expander("XML"):
-                        st.code(block_xml)
+
+                block_xml = page.get_text("xml", text)
+                    # with st.expander("Block XML"):
+                # with st.container():
+                with st.expander("XML"):
+                    st.code(block_xml)
 
 
 st.title("PDF get xml of selected block")
