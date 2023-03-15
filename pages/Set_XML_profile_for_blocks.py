@@ -18,6 +18,7 @@ def display_blocks(pdf_path):
                     for s in l["spans"]:
                         text = s["text"]
                         x = st.write(text)
+                if selected_value:
                     list[x] = selected_value
 
                         # st.write(text)
