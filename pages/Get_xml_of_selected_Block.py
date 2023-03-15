@@ -22,7 +22,7 @@ def display_blocks(pdf_path):
                         block_xml = page.get_text("xml", text)
                             # with st.expander("Block XML"):
                         st.write(text)
-                        st.code(block_xml)
+                        # st.code(block_xml)
                         # with st.container():
                         
                            
