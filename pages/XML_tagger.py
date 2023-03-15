@@ -5,9 +5,9 @@ tag_contents = {
     'objective': 'Learn about XML parsing',
     'chapter_name': 'Introduction to XML',
     'topic_name': 'What is XML?',
-    'topic_contents': 'XML stands for eXtensible Markup Language...',
+    'topic_contents': ['XML stands for eXtensible Markup Language...', 'XML is a markup language...'],
     'sub_topic_name': 'XML Syntax',
-    'sub_topic_contents': 'XML syntax is fairly simple...',
+    'sub_topic_contents': ['XML syntax is fairly simple...', 'XML elements are defined...'],
 }
 
 # Define the XML template string
@@ -34,6 +34,9 @@ xml_template = """<Course>
 
 # Define a function that replaces the placeholders in the XML template with the corresponding values from the dictionary
 def fill_template(template, dictionary):
+    # Join the topic_contents and sub_topic_contents lists into strings separated by newlines
+    dictionary['topic_contents'] = '\n'.join(dictionary['topic_contents'])
+    dictionary['sub_topic_contents'] = '\n'.join(dictionary['sub_topic_contents'])
     return template.format(**dictionary)
 
 # Define the Streamlit app
