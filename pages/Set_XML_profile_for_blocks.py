@@ -17,7 +17,7 @@ def display_blocks(pdf_path):
                     for s in l["spans"]:
                         text = s["text"]
                         st.write(text)
-                        selected_value = st.selectbox(f"Select a category for Text Block {i}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
+                        selected_value = st.selectbox(f"Select a category for Text Block {i}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'], key=text)
                         st.write("Appending content to", selected_value)
                         st.session_state.setdefault(selected_value, []).append(text)
 
