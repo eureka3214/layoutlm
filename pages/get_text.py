@@ -9,7 +9,7 @@ def display_blocks(pdf_path):
         page = doc[pgno]
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
-        blocks = page.get_text()
+        blocks = page.get_text().encode("utf8")
         st.write(blocks)
       
 
