@@ -2,7 +2,15 @@ import streamlit as st
 import fitz
 
 
-list ={}
+tag_contents = {
+    'objective': 'Learn about XML parsing',
+    'chapter_name': 'Introduction to XML',
+    'topic_name': 'What is XML?',
+    'topic_contents': ['XML stands for eXtensible Markup Language...', 'XML is a markup language...'],
+    'sub_topic_name': 'XML Syntax',
+    'sub_topic_contents': ['XML syntax is fairly simple...', 'XML elements are defined...'],
+}
+
 def display_blocks(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     pgno = st.number_input("Input page number", min_value=0)
@@ -13,7 +21,7 @@ def display_blocks(pdf_path):
         blocks = page.get_text("dict")["blocks"]
         for i, b in enumerate(blocks): 
             with st.expander(f"Text Block {i}"):
-                selected_value = st.selectbox(f"{i}", ['None','Objectives', 'sub_topic_name', 'sub_topic_Contents', 'Chapter'])
+                selected_value = st.selectbox(f"{i}", ['None','objective', 'chapter_name', 'topic_name', 'topic_contents','sub_topic_name','sub_topic_contents'])
                 for l in b["lines"]:
                     for s in l["spans"]:
                         text = s["text"]
