@@ -1,6 +1,8 @@
 import streamlit as st
 import fitz
 
+
+list =[]
 def display_blocks(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
     pgno = st.number_input("Input page number", min_value=0)
@@ -16,9 +18,13 @@ def display_blocks(pdf_path):
                     # iterate through the text spans in the line
                     for s in l["spans"]:
                         text = s["text"]
+                        button = st.button(text)
+                        if button:
+                            list.append(text)
+
                         # st.write(text)
-                        selected_value = st.selectbox(f"{text}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
-                        st.write("Appending content to", selected_value)
+                        # selected_value = st.selectbox(f"{text}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
+                        # st.write("Appending content to", selected_value)
                         # st.session_state.(selected_value, []).append(text)
 
 st.title("Set XML profile for selected blocks")
