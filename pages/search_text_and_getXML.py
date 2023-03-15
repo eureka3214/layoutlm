@@ -13,8 +13,9 @@ def display_blocks(pdf_path):
     block_index = st.radio("Select a block:", [i for i in range(len(blocks))])
     
     # get the XML content of the selected block
-    block_xml = page.get_text("xml", blocks[block_index])
-    st.write(block_xml)
+    if block_index:
+        block_xml = page.get_text("xml", blocks[block_index])
+        st.write(block_xml)
 
 
 st.title("PDF get xml")
