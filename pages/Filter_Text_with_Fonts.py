@@ -69,6 +69,6 @@ st.title("Filter with Fonts (WORKING)")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
-    pgno = st.text_input("Input Page Number")
+    pgno = st.number_input("Input Page Number")
     if pgno is not None:
         display_fonts(uploaded_file, pgno)
