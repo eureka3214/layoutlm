@@ -27,7 +27,13 @@ def display_blocks(pdf_path):
                     for s in l["spans"]:
                         text = s["text"]
                         x = st.write(text)
-                       # UPDATE tag_contents
+                        # UPDATE tag_contents
+                        if selected_value == 'topic_contents' or selected_value == 'sub_topic_contents':
+                            if selected_value not in tag_contents:
+                                tag_contents[selected_value] = []
+                            tag_contents[selected_value].append(text)
+                        else:
+                            tag_contents[selected_value] = text
 
 st.title("Set XML profile for selected blocks")
 
@@ -36,4 +42,4 @@ uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 if uploaded_file is not None:
     display_blocks(uploaded_file)
 
-st.write(list)
+st.write(tag_contents)
