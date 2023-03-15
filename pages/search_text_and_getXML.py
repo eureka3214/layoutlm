@@ -4,10 +4,11 @@ import fitz
 
 def display_blocks(pdf_path):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
-    # page = doc[0]
+    pgno = st.number_input("Input page number", min_value=0)
+    if pgno:
+        page = doc[pgno]
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
-    for page in docs:
         blocks = page.get_text("dict")["blocks"]
         for b in blocks:  # iterate through the text blocks
             for l in b["lines"]:  # iterate through the text lines
