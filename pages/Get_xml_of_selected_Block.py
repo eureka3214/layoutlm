@@ -21,7 +21,7 @@ def display_blocks(pdf_path):
                         # with st.expander(text):
                         block_xml = page.get_text("xml", text)
                             # with st.expander("Block XML"):
-                        st.code(text)
+                        st.write(text)
 
 
 st.title("PDF get xml of selected block")
