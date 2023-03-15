@@ -8,13 +8,12 @@ def display_blocks(pdf_path):
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
     blocks = page.get_text("dict")["blocks"]
+    for b in blocks:  # iterate through the text blocks
+        for l in b["lines"]:  # iterate through the text lines
+            st.write(lines)
     
     # create radio buttons for each block
-    options = {}
-    for i, block in enumerate(blocks):
-        line = block["lines"][0]["spans"][0]["text"]
-        options[f"{i}: {line}"] = i
-    block_index = st.radio("Select a block:", list(options.keys()), format_func=lambda x: x.split(": ")[1], index=0, key="radio")
+    block_index = st.radio("Select a block:", [i for i in range(len(blocks))])
     
     # get the XML content of the selected block
     if block_index:
