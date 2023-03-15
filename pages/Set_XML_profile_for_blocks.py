@@ -9,18 +9,17 @@ def display_blocks(pdf_path):
 
         # read page text as a dictionary, suppressing extra spaces in CJK fonts
         blocks = page.get_text("dict")["blocks"]
-        for i, b in enumerate(blocks):  # iterate through the text blocks
-            if st.checkbox("Expand Text Block"):
-                with st.beta_expander(f"Text Block {i} - {selected_value}"):
-                    # iterate through the text lines in the block
-                    for l in b["lines"]:
-                        # iterate through the text spans in the line
-                        for s in l["spans"]:
-                            text = s["text"]
-                            st.write(text)
-                            selected_value = st.selectbox(f"Select a category for Text Block {i}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
-                            st.write("Appending content to", selected_value)
-                            st.session_state.setdefault(selected_value, []).append(b["text"])
+        for i, b in enumerate(blocks): 
+            with st.beta_expander(f"Text Block {i} - {selected_value}"):
+                # iterate through the text lines in the block
+                for l in b["lines"]:
+                    # iterate through the text spans in the line
+                    for s in l["spans"]:
+                        text = s["text"]
+                        st.write(text)
+                        selected_value = st.selectbox(f"Select a category for Text Block {i}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
+                        st.write("Appending content to", selected_value)
+                        st.session_state.setdefault(selected_value, []).append(b["text"])
 
 st.title("Set XML profile for selected blocks")
 
