@@ -11,7 +11,7 @@ def display_blocks(pdf_path):
         # read page text as a dictionary, suppressing extra spaces in CJK fonts
         blocks = page.get_text("dict")["blocks"]
         for i, b in enumerate(blocks):  # iterate through the text blocks
-            with st.expander(f"Block {i}"):
+            with st.container(f"Block {i}"):
                 # iterate through the text lines in the block
                 for l in b["lines"]:
                     # iterate through the text spans in the line
@@ -22,9 +22,9 @@ def display_blocks(pdf_path):
                         block_xml = page.get_text("xml", text)
                             # with st.expander("Block XML"):
                         st.write(text)
-                        with st.container():
-                            with st.expander("XML"):
-                                st.code(block_xml)
+                        # with st.container():
+                        with st.expander("XML"):
+                            st.code(block_xml)
 
 
 st.title("PDF get xml of selected block")
