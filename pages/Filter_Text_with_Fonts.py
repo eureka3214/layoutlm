@@ -20,9 +20,9 @@ def flags_decomposer(flags):
         l.append("bold")
     return ", ".join(l)
 
-def display_fonts(pdf_path):
+def display_fonts(pdf_path, pagenum):
     doc = fitz.open(stream=pdf_path.read(), filetype="pdf")
-    page = doc[0]
+    page = doc[pagenum]
 
     # read page text as a dictionary, suppressing extra spaces in CJK fonts
     blocks = page.get_text("dict", flags=11)["blocks"]
@@ -69,4 +69,6 @@ st.title("Filter with Fonts (WORKING)")
 uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 if uploaded_file is not None:
-    display_fonts(uploaded_file)
+    pgno = st.text_input("Input Page Number")
+    if pgno is not None:
+        display_fonts(uploaded_file, pgno)
