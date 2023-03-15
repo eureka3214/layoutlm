@@ -3,12 +3,12 @@ import fitz
 
 
 tag_contents = {
-    'objective': 'Learn about XML parsing',
-    'chapter_name': 'Introduction to XML',
-    'topic_name': 'What is XML?',
-    'topic_contents': ['XML stands for eXtensible Markup Language...', 'XML is a markup language...'],
-    'sub_topic_name': 'XML Syntax',
-    'sub_topic_contents': ['XML syntax is fairly simple...', 'XML elements are defined...'],
+    'objective': 'Upload PDF, set page, and select from text block',
+    'chapter_name': ' select chapter_name from text block',
+    'topic_name': ' select topic_name from text block',
+    'topic_contents': [' select topic_contents from text block', '......'],
+    'sub_topic_name': ' select sub_topic_name from text block',
+    'sub_topic_contents': [' select sub_topic_contents from text block', '...'],
     'None': 'nothing....'
 }
 
@@ -76,11 +76,11 @@ uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 if uploaded_file is not None:
     display_blocks(uploaded_file)
 
-st.write("Dictionary contents:")
-for key, value in tag_contents.items():
-    st.write(f"{key}: {value}")
+# st.write("Dictionary contents:")
+# for key, value in tag_contents.items():
+#     st.write(f"{key}: {value}")
 
 # Display the XML code generated from the template and dictionary
-st.write("Generated XML code:")
+st.subheader("Generated XML code:")
 xml_code = fill_template(xml_template, tag_contents)
 st.code(xml_code, language="xml")
