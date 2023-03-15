@@ -13,10 +13,8 @@ def display_blocks(pdf_path):
         blocks = page.get_text("dict")["blocks"]
         for i, b in enumerate(blocks): 
             with st.expander(f"Text Block {i}"):
-                selected_value = st.selectbox(f"{i}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
-                # iterate through the text lines in the block
+                selected_value = st.selectbox(f"{i}", ['Objectives', 'sub_topic_name', 'sub_topic_Contents', 'Chapter'])
                 for l in b["lines"]:
-                    # iterate through the text spans in the line
                     for s in l["spans"]:
                         text = s["text"]
                         st.write(text)
