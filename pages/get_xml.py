@@ -28,7 +28,7 @@ def display_fonts(pdf_path):
     blocks = page.get_text("dict", flags=11)["blocks"]
     for b in blocks:  # iterate through the text blocks
         lines = b["lines"]
-        st.write(lines)
+        st.write(b)
         # for l in b["lines"]:  # iterate through the text lines
         #     for s in l["spans"]:  # iterate through the text spans
         #         st.write("")
