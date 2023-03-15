@@ -9,6 +9,7 @@ tag_contents = {
     'topic_contents': ['XML stands for eXtensible Markup Language...', 'XML is a markup language...'],
     'sub_topic_name': 'XML Syntax',
     'sub_topic_contents': ['XML syntax is fairly simple...', 'XML elements are defined...'],
+    'None': 'nothing....'
 }
 
 def display_blocks(pdf_path):
@@ -26,12 +27,7 @@ def display_blocks(pdf_path):
                     for s in l["spans"]:
                         text = s["text"]
                         x = st.write(text)
-                        list[text] = selected_value
-
-                        # st.write(text)
-                        # selected_value = st.selectbox(f"{text}", ['Category 1', 'Category 2', 'Category 3', 'Category 4'])
-                        # st.write("Appending content to", selected_value)
-                        # st.session_state.(selected_value, []).append(text)
+                       # UPDATE tag_contents
 
 st.title("Set XML profile for selected blocks")
 
