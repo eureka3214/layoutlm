@@ -61,8 +61,8 @@ def display_fonts(pdf_path, pagenum):
                 fp["font_size"],  # font size
                 fp["font_color"],  # font color
             )
-            st.code("Text: '%s'" % fp["text"])  # simple print of text
-            st.write(font_properties)
+            st.write("Text: '%s'" % fp["text"])  # simple print of text
+            st.code(font_properties)
 
 st.title("Filter with Fonts (WORKING)")
 
